@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Abhishek Chhabra - full stack developer. ">
+  <meta name="keywords"
+    content="abhishek chhabra, full stack developer, flutter developer, mobile developer, software developer, C">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <style>
+    :root {
+      --effect: hover 2s linear infinite;
+    }
+
+    * {
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #loading {
+      text-align: center;
+    }
+
+    p {
+      display: inline-block;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 4em;
+      font-family: arial;
+      font-weight: 600;
+      transform: scale(.5);
+      color: #121212;
+      -webkit-text-stroke: 2px gray;
+    }
+
+    p:nth-child(1) {
+      animation: var(--effect);
+    }
+
+    p:nth-child(2) {
+      animation: var(--effect) .125s;
+    }
+
+    p:nth-child(3) {
+      animation: var(--effect) .25s;
+    }
+
+    p:nth-child(4) {
+      animation: var(--effect) .375s;
+    }
+
+    p:nth-child(5) {
+      animation: var(--effect) .5s;
+    }
+
+    p:nth-child(6) {
+      animation: var(--effect) .675s;
+    }
+
+    p:nth-child(7) {
+      animation: var(--effect) .75s;
+    }
+
+    p:nth-child(8) {
+      animation: var(--effect) .87s;
+    }
+
+    p:nth-child(10) {
+      animation: var(--effect) .97s;
+    }
+
+    p:nth-child(11) {
+      animation: var(--effect) 1.17s;
+    }
+
+    p:nth-child(12) {
+      animation: var(--effect) 1.27s;
+    }
+
+    p:nth-child(13) {
+      animation: var(--effect) 1.37s;
+    }
+
+    p:nth-child(14) {
+      animation: var(--effect) 1.47s;
+    }
+
+    p:nth-child(15) {
+      animation: var(--effect) 1.57s;
+    }
+
+    p:nth-child(16) {
+      animation: var(--effect) 1.67s;
+    }
+
+
+    @keyframes hover {
+      0% {
+        transform: scale(.5);
+        color: #121212;
+        -webkit-text-stroke: 2px gray;
+      }
+
+      20% {
+        transform: scale(1);
+        color: pink;
+        -webkit-text-stroke: 3px red;
+        filter: drop-shadow(0 0 1px black)drop-shadow(0 0 1px black)drop-shadow(0 0 3px red)drop-shadow(0 0 5px red)hue-rotate(10turn);
+      }
+
+      50% {
+        transform: scale(.5);
+        color: #121212;
+        -webkit-text-stroke: 2px gray;
+      }
+
+
+    }
+  </style>
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="portfolio">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <title>Abhishek Chhabra</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <div class="loading" id="preloader">
+    <p>A</p>
+    <p>B</p>
+    <p>h</p>
+    <p>I</p>
+    <p>S</p>
+    <p>H</p>
+    <p>E</p>
+    <p>K</p>
+    <p> </p>
+    <p>C</p>
+    <p>H</p>
+    <p>H</p>
+    <p>A</p>
+    <p>B</p>
+    <p>R</p>
+    <p>A</p>
+    <br>
+    <h3 style="color: aliceblue;">Loading Web App...</h3>
+  </div>
+  <script src="main.dart" type="application/javascript"
+    onendload="document.getElementById('preloader').remove();"></script>
+  
+  <!-- <script src="main.dart.js" type="application/javascript"></script> -->
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    var serviceWorkerVersion = null;
+    var scriptLoaded = false;
+    function loadMainDartJs() {
+      if (scriptLoaded) {
+        return;
+      }
+      scriptLoaded = true;
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'main.dart.js';
+      scriptTag.type = 'application/javascript';
+      document.body.append(scriptTag);
+    }
+
+    if ('serviceWorker' in navigator) {
+      // Service workers are supported. Use them.
+      window.addEventListener('load', function () {
+        // Wait for registration to finish before dropping the <script> tag.
+        // Otherwise, the browser will load the script multiple times,
+        // potentially different versions.
+        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
+        navigator.serviceWorker.register(serviceWorkerUrl)
+          .then((reg) => {
+            function waitForActivation(serviceWorker) {
+              serviceWorker.addEventListener('statechange', () => {
+                if (serviceWorker.state == 'activated') {
+                  console.log('Installed new service worker.');
+                  loadMainDartJs();
+                }
+              });
+            }
+            if (!reg.active && (reg.installing || reg.waiting)) {
+              // No active web worker and we have installed or are installing
+              // one for the first time. Simply wait for it to activate.
+              waitForActivation(reg.installing ?? reg.waiting);
+            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
+              // When the app updates the serviceWorkerVersion changes, so we
+              // need to ask the service worker to update.
+              console.log('New service worker available.');
+              reg.update();
+              waitForActivation(reg.installing);
+            } else {
+              // Existing service worker is still good.
+              console.log('Loading app from service worker.');
+              loadMainDartJs();
+            }
+          });
+
+        // If service worker doesn't succeed in a reasonable amount of time,
+        // fallback to plaint <script> tag.
+        setTimeout(() => {
+          if (!scriptLoaded) {
+            console.warn(
+              'Failed to load app from service worker. Falling back to plain <script> tag.',
+            );
+            loadMainDartJs();
+          }
+        }, 4000);
+      });
+    } else {
+      // Service workers not supported. Just drop the <script> tag.
+      loadMainDartJs();
+    }
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+</body>
+
+</html>
