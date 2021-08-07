@@ -1,10 +1,10 @@
 # portfolio
 
-A new Flutter project.
+Portfolio Web App created in Flutteer
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting is a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
